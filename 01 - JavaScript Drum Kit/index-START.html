@@ -8,7 +8,7 @@
 </head>
 <body>
 
-
+<!-- Data Attributes are when you make your own attribute tagged with a data- in front -->
   <div class="keys">
     <div data-key="65" class="key">
       <kbd>A</kbd>
@@ -58,8 +58,29 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
+  <!-- e is the event object that has all the info we would want -->
 <script>
 
+   function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+    if (!key) return; //stops function from running when no key
+    if (!audio) return; // stop function from running
+    console.log(key)
+    audio.currentTime = 0; // rewind to the start so the audio plays rapidly if we hit it constantly
+    audio.play() //if you call .play on an audio that's already playing, it won't play again
+    key.classList.add('playing'); //add the playing class to the key after we hit the button
+  }
+
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return; // skip if it's not a transform
+
+    this.classList.remove('playing') // "this" is the key that was pressed
+  }
+  const keys = document.querySelectorAll('.key')
+  // we can't addeventlistener on the keys because when we have an array we have to loop through each one and add an event listener to each one
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition)); //listen for each element that has a class of key and add the transitioned eventlistener to each of them
+  window.addEventListener('keydown', playSound); //when a key is pressed we run the playSound function
 </script>
 
 
