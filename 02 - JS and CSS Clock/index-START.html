@@ -63,13 +63,37 @@
       background: black;
       position: absolute;
       top: 50%;
+      /* transforms default is 50% which in the middle of the element,
+      we want out on the very right hand side, origin does it along the x axis so 100% will put the pivot at the very right */
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.05s;
+      transition-timing-function: ease-in-out;
     }
 
   </style>
 
   <script>
+    // selecting our elemenets
+    const secondHand = document.querySelector('.second-hand');
+    const minutesHand = document.querySelector('.min-hand');
+    const hourHand = document.querySelector('.hour-hand');
 
+    function setDate() {
+      const now = new Date(); //getting the current time and then getting the seconds, minutes, and hours
+      const seconds = now.getSeconds();
+      const minutes = now.getMinutes();
+      const hours = now.getHours();
 
+      const secondsDegrees = ((seconds / 60) * 360) + 90; //getting the seconds and turning them into degrees
+      const minutesDegrees = ((minutes / 60) * 360) + 90; //getting the minutes and turning them into degrees for the rotate
+      const hourDegrees = ((hours / 12) * 360) + 90; //getting the hours and turning them into degrees
+      // transforming the hands and having them rotate the appropriate degrees
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      minutesHand.style.transform = `rotate(${minutesDegrees}deg)`;
+      hourDegrees.style.transform = `rotate(${hourDegrees}deg)`;
+    }
+    setInterval(setDate, 1000);
   </script>
 </body>
 </html>
