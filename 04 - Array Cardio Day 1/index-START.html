@@ -46,10 +46,14 @@
     console.log(map)
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-
+    // since we are using objects can key into the objects and get whatever we want to compare using dot notation
+    const sort = inventors.sort((a,b) => a.year-b.year)
+    console.log(sort)
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
-
+    // we want to get our accumulator, and use that with the current value to get how long each invetor lived, then add it to the accumulator's value
+    const yearsTotal = inventors.reduce((accumulator, currentValue) => accumulator + (currentValue.passed - currentValue.year), 0);
+    console.log(yearsTotal)
     // 5. Sort the inventors by years lived
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
