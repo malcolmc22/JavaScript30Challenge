@@ -11,7 +11,7 @@
   <div class="controls">
     <label for="spacing">Spacing:</label>
     <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
-
+<!-- made data attributes (attributes we made up, to add px at the end for blue and spacing) -->
     <label for="blur">Blur:</label>
     <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
 
@@ -22,7 +22,23 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    /* declare css variables on some sort of element, here we are declaring it on root, the highest level  */
 
+    :root {
+      --base :#ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    img {
+      padding: var(--spacing); /* in css we use the "--" because thats how they made it*/
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+
+    .hi {
+      color: var(--base)
+    }
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -46,6 +62,17 @@
   </style>
 
   <script>
+    const inputs = document.querySelectorAll('.controls input'); //queryselector gives a nodelist not an array
+
+    function handleUpdate() {
+      // to select a variable, we select our entire document (root) and set a property of base, spacing, or blur
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
+
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
   </script>
 
 </body>
