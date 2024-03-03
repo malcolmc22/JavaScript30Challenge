@@ -33,7 +33,9 @@
     const arraySome = people.some((person) => now.getFullYear() - person.year >= 19)
     console.log(arraySome)
     // Array.prototype.every() // is everyone 19 or older?
-
+    // we use the same approach are the some, to check if every person is 19 or older
+    const arrayEvery = people.every((person)=> now.getFullYear() - person.year >= 19)
+    console.log(arrayEvery)
 
     // Array.prototype.find()
     // Find is like filter, but instead returns just the one you are looking for
