@@ -23,6 +23,17 @@
   let hue = 0;
   let direction = true;
 
+  function draw(e) {
+    if (!isDrawing) return; // stop fnw hen not drawing
+    console.log(e);
+    ctx.strokeStyle = `hasl(${hue}, 100%, 50)`;
+    ctx.beginPath();
+    // start from
+    ctx.moveTo(lastX, lastY);
+    //go to
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+  }
 </script>
 
 <style>
