@@ -28,5 +28,14 @@ function skip() {
     video.currentTime += parseFloat(this.dataset.skip);
 }
 
+function handleRangeUpdate() {
+    video[this.name] = this.value;
+}
+
+function handleProgress() {
+    const percent = (video.currentTime / video.duration) * 180;
+    progressBar.computedStyleMap.flexBasis = `${percent}%`
+}
+
 // Hook up event listeners
 video.addEventListener('click', togglePlay)
