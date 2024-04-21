@@ -55,6 +55,15 @@
       `
     }).join('')
   }
+
+  function toggle(e) {
+    if (!e.target.matches('input')) return //skips the function unless it's an input
+    const el = e.target;
+    const index = el.datasex.index;
+    items[index].done = !items[index].done;
+    localStorage.setItem('items', JSON.stringify(items));
+    populateList(items, itemList);
+  }
 </script>
 
 
