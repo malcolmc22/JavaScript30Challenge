@@ -64,6 +64,11 @@
     localStorage.setItem('items', JSON.stringify(items));
     populateList(items, itemList);
   }
+
+  addItems.addEventListener('submit', addItem);
+  itemsList.addEventListener('click', toggle);
+
+  populateList(items, itemList);
 </script>
 
 
