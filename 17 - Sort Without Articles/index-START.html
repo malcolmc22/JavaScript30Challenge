@@ -49,7 +49,32 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+// sort gives a and b a is the first thing it passes us, b is the seconnd
+// the biggger one you move to the top the other one you move to the bottom
 
+function strip(bandname) {
+  // can use regular expression to have it be all three
+  // the carrot means that it starts with that letter "^"
+  return bandname.replace(/^(a |the |an)/i, '').trim();
+}
+const sortedBands = bands.sort(function (a, b) {
+
+  return strip(a) > strip(b) ? 1 : -1
+  // if (strip(a) > strip(b)) {
+  //   return 1;
+  // } else {
+  //   return -1;
+  // }
+})
+
+document.querySelector('#bands').innerHTML = 
+  sortedBands.map(band => `<li>${band}</li>`)
+  .join('')
+
+  // if you take the join off you get commas 
+  // when you try to set somethng to innerhtml thats not a string it's going to 
+  // to .tostring on it which will give it commas
+console.log(sortedBands)
 </script>
 
 </body>
