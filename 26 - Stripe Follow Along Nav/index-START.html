@@ -233,6 +233,17 @@
     const dropdown = this.querySelector('.dropdown');
     const dropdownCords = dropdown.getBoundingClientRect();
     const navCoords = nav.getBoundingClientRect();
+
+    const coords = {
+      height: dropdownCords.height,
+      width: dropdownCords.width,
+      top: dropdownCords.top - navCoords.top,
+      left: dropdownCords.left - navCoords.left
+    };
+
+    background.style.setProperty('width', `${coords.width}px`)
+    background.style.setProperty('height', `${coords.height}px`)
+    background.style.setProperty('transorm', `translate(${coords.left}px, ${coords.top}px)`)
   }
 </script>
 
