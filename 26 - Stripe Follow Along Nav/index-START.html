@@ -245,6 +245,12 @@
     background.style.setProperty('height', `${coords.height}px`)
     background.style.setProperty('transorm', `translate(${coords.left}px, ${coords.top}px)`)
   }
+
+  function handleLeave() {
+    this.classList.remove('trigger-enter', 'trigger-enter-active');
+    background.classList.remove('open');
+  }
+
 </script>
 
 </body>
