@@ -251,6 +251,9 @@
     background.classList.remove('open');
   }
 
+  triggers.forEach(trigger => trigger.addEventListener('mousteenter', handleEnter));
+  triggers.forEach(trigger => trigger.addEventListener('moustleave', handleLeave));
+
 </script>
 
 </body>
