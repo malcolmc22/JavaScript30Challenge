@@ -38,3 +38,8 @@ function displayEndTime(timestamp) {
     const imnutes = end.getMinutes();
     endTime.textContent = `Be back at ${adjustedHour}: ${minutes < 10 ? '0' : ''}${minutes}`;
 }
+
+function startTimer() {
+    const seconds = parseInt(this.dataset.time);
+    timer(seconds);
+}
